@@ -1,0 +1,15 @@
+body {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+}
+.content {
+    background-color: tomato;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+}
