@@ -9,4 +9,4 @@ def home():
     return "Hello this is the main page <h1>Project 2</h1>"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
