@@ -1,5 +1,4 @@
 # This will be our Flask app
-
 from flask import Flask, redirect, url_for
 
 app = Flask(__name__)
