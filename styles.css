@@ -16,10 +16,6 @@ li {
     list-style-type: none;
 }
 
-.search-bar {
-    position: relative;
-}
-
-input {
-    width: 500px;
+.search {
+    width: 250px;
 }
