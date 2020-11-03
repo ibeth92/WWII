@@ -36,3 +36,8 @@ li {
     width: 50%;
     height: 50%;
 }
+
+.nav li {
+    display: inline;
+    
+}
