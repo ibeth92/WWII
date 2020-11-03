@@ -1,6 +1,6 @@
 
 body {
-    background-color: lightsteelblue;
+    background-color: whitesmoke;
     padding: 0%;
     margin: 0%;
 }
@@ -11,7 +11,7 @@ h1 {
 }
 
 .container {
-    background-color: tomato;
+    /* background-color: tomato; */
     text-align: center;
 }
 
@@ -30,9 +30,9 @@ li {
     width: 100%;
 }
 
-.title-text {
+/* .title-text {
     background-color: teal;
-}
+} */
 
 .map-img {
     width: 50%;
@@ -43,7 +43,6 @@ li {
     display: flex;
     justify-content: space-between;
     padding: 38px;
-    background-color: lightgray;
 }
   
 .left-side {
@@ -85,5 +84,5 @@ li {
 }
 
 .brand {
-    color: chartreuse;
+    color: #8a8a8a;;
 }
