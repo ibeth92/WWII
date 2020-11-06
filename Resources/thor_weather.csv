@@ -1,4 +1,4 @@
-,LATITUDE,LONGITUDE,MSNDATE,WX_FAIL_AC,MECH_FAIL_AC,MISC_FAIL_AC
+,latitude,longitude,missiondate,weatherfails,mechanicalfails,miscfails
 3,38.43,15.9,1943-08-15,,,1.0
 1237,39.27,16.25,1943-08-19,1.0,,
 1838,40.67,14.73,1943-08-22,,,10.0

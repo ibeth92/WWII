@@ -20,5 +20,24 @@ Base = automap_base()
 inspector = inspect(engine)
 print (inspector.get_table_names())
 
-columns = inspector.get_columns('bombings')
-print (columns)
+#columns = inspector.get_columns('bombings')
+#print (columns)
+
+# Connect to sqlite
+conn = sqlite3.connect('wwii.db')
+
+#Creating a cursor object using the cursor() method
+cursor = conn.cursor()
+
+# Dropping clean_weather and weather tables created on accident
+# cursor.execute("""
+# DROP TABLE weather;
+# DROP TABLE clean_weather;
+# """")
+# print("Table dropped... ")
+
+#Commit your changes in the database
+conn.commit()
+
+#Closing the connection
+conn.close()
