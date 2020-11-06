@@ -70,21 +70,21 @@ li {
 }
   
 .nav-link-wrapper a {
-    color: #8a8a8a;
+    color: #F45B69;
     text-decoration: none;
     transition: color 0.5s;
 }
   
 .nav-link-wrapper:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid grey;
 }
   
 .nav-link-wrapper a:hover {
-    color: black;
+    color: grey;
 }
 
 .logo {
-    color: #8a8a8a;;
+    color: #F45B69;;
 }
 
 button {
@@ -103,9 +103,12 @@ body {
   
 /* .section SECTION
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  
+
+.timeline-title {
+    font-weight: bold;
+}
 .section {
-    background: #dd2c00;
+    background: #F45B69;
     padding: 50px 0;
 }
   
