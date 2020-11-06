@@ -2,3 +2,4 @@ config.py
 keys.py
 .DS_Store
 **/.DS_Store
+/Resources/.DS_Store
