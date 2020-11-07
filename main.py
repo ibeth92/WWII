@@ -1,5 +1,7 @@
 # This will be our Flask app
+# This will be our Flask app
 from flask import Flask, redirect, url_for
+import sqlalchemy
 
 app = Flask(__name__)
 
