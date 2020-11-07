@@ -55,7 +55,7 @@ Weapons = Base.classes.weapons
 Weather = Base.classes.weather 
 Failures = Base.classes.failures
 Bombings = Base.classes.bombings
-Stations = Base.classes.stations
+Station = Base.classes.station
 session = Session(engine)
 
 # Setup Flask
