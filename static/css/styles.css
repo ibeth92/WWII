@@ -1,6 +1,8 @@
 
 body {
-    background-color: whitesmoke;
+    font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+    background: #456990;
+    color: #fff;
     padding: 0%;
     margin: 0%;
 }
@@ -10,14 +12,22 @@ h1 {
     font-size: 50px;
 }
 
+li {
+    list-style-type: none;
+}
+button {
+    background:  #F45B69;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* main body */
 .container {
     /* background-color: tomato; */
     text-align: center;
 }
-
-li {
-    list-style-type: none;
-}
+/* search input */
 .search-bar{
     padding: 10px;
     margin: 100px;
@@ -26,17 +36,9 @@ li {
     width: 250px;
 }
 
-.results-table {
+/* table css */
+#ufo-table {
     width: 100%;
-}
-
-/* .title-text {
-    background-color: teal;
-} */
-
-.map-img {
-    width: 50%;
-    height: 50%;
 }
 /* nav bar styles */
 .nav-wrapper {
@@ -70,42 +72,32 @@ li {
 }
   
 .nav-link-wrapper a {
-    color: #8a8a8a;
+    color: #F45B69;
     text-decoration: none;
     transition: color 0.5s;
 }
   
 .nav-link-wrapper:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid grey;
 }
   
 .nav-link-wrapper a:hover {
-    color: black;
+    color: grey;
 }
 
-.logo {
-    color: #8a8a8a;;
+.logo > a {
+    text-decoration: none;
+    color: #F45B69;
 }
 
-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-  
-body {
-    font: normal 16px/1.5 "Helvetica Neue", sans-serif;
-    background: #456990;
-    color: #fff;
-}
-  
-  
 /* .section SECTION
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  
+
+.timeline-title {
+    font-weight: bold;
+}
 .section {
-    background: #dd2c00;
+    background: #F45B69;
     padding: 50px 0;
 }
   
