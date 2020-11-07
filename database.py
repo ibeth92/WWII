@@ -6,14 +6,21 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 
-# Import Flask 
-# from flask import Flask, jsonify
+import flask 
+from flask import Flask, jsonify
+
+# Setup Flask
+# Create an app, pass to __name__
+app = Flask(__name__)
+
+# Automap base
+Base = automap_base()
 
 # Setup Database
 engine = create_engine('sqlite:///wwii.db')
 
-# Automap base
-Base = automap_base()
+# Reflect an existing database into a new model
+Base.prepare(engine, reflect= True)
 
 inspector = inspect(engine)
 tables = inspector.get_table_names()
@@ -23,7 +30,7 @@ print (inspector.get_table_names())
 #print (columns)
 
 # Connect to sqlite
-# conn = sqlite3.connect('wwii.db')
+#conn = sqlite3.connect('wwii.db')
 
 # Creating a cursor object using the cursor() method
 # cursor = conn.cursor()
@@ -47,20 +54,17 @@ for table in tables:
     print (columns)
     print (table)
 
-# Reflect an existing database into a new model
-Base.prepare(engine, reflect= True)
+
 
 # Save references to each table
-Weapons = Base.classes.weapons
-Weather = Base.classes.weather 
-Failures = Base.classes.failures
+# Weapons = Base.classes.weapons
+Weather = Base.classes.weather_final
+Failures = Base.classes.thor_failures
 Bombings = Base.classes.bombings
-Station = Base.classes.station
+# Station = Base.classes.station
 session = Session(engine)
 
-# Setup Flask
-# Create an app, pass to __name__
-app = Flask(__name__)
+
 
 @app.route("/")
 def welcome():
@@ -74,31 +78,10 @@ def welcome():
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/<start>/<end><br/>"
     )
-# Set up Weapons
-@app.route("/api/v1.0/weapons")
-def weapons():
-# Create our session (link) from Python to the DB
-    session = Session(engine)
-
-# Query Weapons date and type
-    results =   session.query(Weapons.date, Weapons.type).\
-                order_by(Weapons.date).all()
-
-# Convert to list of dictionaries to jsonify
-    weapons_data = []
-
-    for date, type in results:
-        new_dict = {}
-        new_dict[date] = type
-        weapons_data.append(new_dict)
-
-    session.close()
-
-    return jsonify(weapons_data)
 
 # Set up Weather
-@app.route("/api/v1.0/weather")
-def weather():
+@app.route("/api/v1.0/weather_final")
+def weather_final():
 # Create our session (link) from Python to the DB
     session = Session(engine)
 
@@ -119,8 +102,8 @@ def weather():
     return jsonify(weather_data)
 
 # Set up Failures
-@app.route("/api/v1.0/failures")
-def failures():
+@app.route("/api/v1.0/thor_failures")
+def thor_failures():
 # Create our session (link) from Python to the DB
     session = Session(engine)
 
@@ -163,22 +146,5 @@ def bombings():
 
     return jsonify(bombings_data)
 
-# Set up Stations
-@app.route("/api/v1.0/stations")
-def stations():
-
-# Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    stations = {}
-
-# Query all stations
-    results = session.query(Station.station, Station.name).all()
-    for sta, name in results:
-        stations[sta] = name
-
-    session.close()
- 
-    return jsonify(stations)
 
 
