@@ -54,8 +54,6 @@ for table in tables:
     print (columns)
     print (table)
 
-
-
 # Save references to each table
 # Weapons = Base.classes.weapons
 Weather = Base.classes.weather_final
@@ -145,6 +143,47 @@ def bombings():
     session.close()
 
     return jsonify(bombings_data)
+
+# Set up Weapons
+# @app.route("/api/v1.0/weapons")
+# def weapons():
+# Create our session (link) from Python to the DB
+#     session = Session(engine)
+
+# Query Weapons date and type
+#     results =   session.query(Weapons.date, Weapons.type).\
+#                 order_by(Weapons.date).all()
+
+# Convert to list of dictionaries to jsonify
+#     weapons_data = []
+
+#     for date, type in results:
+#         new_dict = {}
+#         new_dict[date] = type
+#         weapons_data.append(new_dict)
+
+#     session.close()
+
+#     return jsonify(weapons_data)
+
+
+# Set up Stations
+# @app.route("/api/v1.0/stations")
+# def stations():
+
+# Create our session (link) from Python to the DB
+#     session = Session(engine)
+
+#     stations = {}
+
+# Query all stations
+#     results = session.query(Station.station, Station.name).all()
+#     for sta, name in results:
+#         stations[sta] = name
+
+#     session.close()
+ 
+#     return jsonify(stations)
 
 
 
