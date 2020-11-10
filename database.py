@@ -37,14 +37,19 @@ conn = sqlite3.connect('wwii.db')
 #Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 #Doping EMPLOYEE table if already exists.
-cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
+cursor.execute("DROP TABLE IF EXISTS weather_data")
 #Creating table as per requirement
-sql ='''CREATE TABLE EMPLOYEE(
-   FIRST_NAME CHAR(20) NOT NULL,
-   LAST_NAME CHAR(20),
-   AGE INT,
-   SEX CHAR(1),
-   INCOME FLOAT
+sql ='''CREATE TABLE weather_data(
+	Date DATE,
+	MAX INT, 
+	MIN INT,
+	MaxTemp INT, 
+	MinTemp INT,
+	Precip INT, 
+	WindGustSpd INT, 
+	Snowfall INT, 
+	PoorWeather INT, 
+	PRCP INT
 )'''
 cursor.execute(sql)
 print("Table created successfully........")
@@ -77,8 +82,8 @@ for table in tables:
     print (table)
 
 # Save references to each table
-Weapons = Base.classes.weapons_bombs
-Weather = Base.classes.weather_final
+# Weapons = Base.classes.weapons_bombs
+Weather = Base.classes.weather_data
 Failures = Base.classes.thor_failures
 Bombings = Base.classes.bombings
 Station = Base.classes.weather_stations
