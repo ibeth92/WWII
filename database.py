@@ -40,17 +40,45 @@ cursor = conn.cursor()
 cursor.execute("DROP TABLE IF EXISTS weather_data")
 #Creating table as per requirement
 sql ='''CREATE TABLE weather_data(
-	Date DATE,
-	MAX INT, 
-	MIN INT,
-	MaxTemp INT, 
-	MinTemp INT,
-	Precip INT, 
-	WindGustSpd INT, 
-	Snowfall INT, 
-	PoorWeather INT, 
+	Date DATE NOT NULL,
+	MAX INT NOT NULL, 
+	MIN INT NOT NULL,
+	MaxTemp INT NOT NULL, 
+	MinTemp INT NOT NULL,
+	Precip INT NOT NULL, 
+	WindGustSpd INT NOT NULL, 
+	Snowfall INT NOT NULL, 
+	PoorWeather INT NOT NULL, 
 	PRCP INT
 )'''
+
+#-- Create a table that gives us event locations using latitudes and longitudes
+CREATE TABLE aircraft_failures(
+	event_id INT NOT NULL,
+	MISSIONDATE DATE NOT NULL,
+	LATITUDE INT NOT NULL, 
+	LONGITUDE INT NOT NULL,
+	WEATHERFAILS INT NOT NULL,
+	MECHANICALFAILS INT NOT NULL,
+	MISCFAILS INT NOT NULL,
+
+PRIMARY KEY(MSNDATE),
+FOREIGN KEY(event_id)
+	REFERENCES event_id(id)
+#);  
+#CREATE TABLE bombings (
+    [id] INT IDENTITY(1,1) NOT NULL ,
+    [date] dateTime  NOT NULL ,
+    [theater] VARCHAR(25)  NOT NULL ,
+    [naf] VARCHAR(10)  NOT NULL ,
+    [country_flying_mission] VARCHAR  NOT NULL ,
+    [tgt_country] VARCHAR  NOT NULL ,
+    [tgt_city] VARCHAR  NOT NULL ,
+    [latitude] INT  NOT NULL ,
+    [longitude] INT  NOT NULL ,
+    CONSTRAINT [PK_bombings] PRIMARY KEY CLUSTERED (
+        [id] ASC
+# )
 cursor.execute(sql)
 print("Table created successfully........")
 # Commit your changes in the database
