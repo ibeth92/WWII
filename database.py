@@ -1,6 +1,9 @@
 import sqlite3
 from sqlite3 import Error
 
+import numpy as np
+import pandas as pd
+
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -29,17 +32,36 @@ print (inspector.get_table_names())
 #columns = inspector.get_columns('bombings')
 #print (columns)
 
-# Connect to sqlite
-#conn = sqlite3.connect('wwii.db')
-
-# Creating a cursor object using the cursor() method
-# cursor = conn.cursor()
+#Connecting to sqlite
+conn = sqlite3.connect('wwii.db')
+#Creating a cursor object using the cursor() method
+cursor = conn.cursor()
+#Doping EMPLOYEE table if already exists.
+cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
+#Creating table as per requirement
+sql ='''CREATE TABLE EMPLOYEE(
+   FIRST_NAME CHAR(20) NOT NULL,
+   LAST_NAME CHAR(20),
+   AGE INT,
+   SEX CHAR(1),
+   INCOME FLOAT
+)'''
+cursor.execute(sql)
+print("Table created successfully........")
+# Commit your changes in the database
+conn.commit()
+#Closing the connection
+conn.close()
 
 # Dropping clean_weather and weather tables created on accident
+# DROP TABLE bombings;
+# DROP TABLE thor_failures;
+# DROP TABLE weapons_bombs;
+# DROP TABLE weather_final;
+# DROP TABLE weather_stations;
 # cursor.execute("""
-# DROP TABLE weather;
-# DROP TABLE clean_weather;
-# """")
+#     DROP TABLE weather_final;
+#     """)
 # print("Table dropped... ")
 
 # Commit your changes in the database
@@ -55,14 +77,12 @@ for table in tables:
     print (table)
 
 # Save references to each table
-# Weapons = Base.classes.weapons
+Weapons = Base.classes.weapons_bombs
 Weather = Base.classes.weather_final
 Failures = Base.classes.thor_failures
 Bombings = Base.classes.bombings
-# Station = Base.classes.station
+Station = Base.classes.weather_stations
 session = Session(engine)
-
-
 
 @app.route("/")
 def welcome():
@@ -143,6 +163,9 @@ def bombings():
     session.close()
 
     return jsonify(bombings_data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 # Set up Weapons
 # @app.route("/api/v1.0/weapons")
