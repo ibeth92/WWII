@@ -110,20 +110,17 @@ def bombings():
     session = Session(engine)
 
 # Query Weather date and conditions
-    results =   session.query(Bombings.date, Bombings.theater).\
-                order_by(Bombings.date).all()
+    results =   session.query(str(Bombings.date),Bombings.theater, Bombings.naf, Bombings.country_flying_mission, Bombings.tgt_country, Bombings.tgt_city, Bombings.latitude, Bombings.longitude).all()
 
 # Convert to list of dictionaries to jsonify
     bombings_data = []
 
-    for date, type in results:
-        new_dict = {}
-        new_dict[date] = type
-        bombings_data.append(new_dict)
+    for result in results:
+        bombings_data.append(result)
 
     session.close()
-
-    return jsonify(bombings_data)
+    bombing_data = jsonify(bombings_data)
+    return bombing_data
 
 if __name__ == "__main__":
     app.run(debug=True)
