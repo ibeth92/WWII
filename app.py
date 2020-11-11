@@ -1,6 +1,7 @@
 # Import dependencies
 import numpy as np
 import pandas as pd
+import os
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -47,13 +48,13 @@ session = Session(engine)
 @app.route("/")
 def welcome():
     return(
-        f"A Day in History WWII<br>"
-        f"Avaialble Routes:<br>"
-        f"/api/v1.0/weapons<br>"
-        f"/api/v1.0/weather<br>"
-        f"/api/v1.0/failures<br>"
-        f"/api/v1.0/bombings<br>"
-        f"/api/v1.0/stations<br>"
+        f"A Day in History WWII<br/>"
+        f"Avaialble Routes:<br/>"
+        f"/api/v1.0/weapons<br/>"
+        f"/api/v1.0/weather<br/>"
+        f"/api/v1.0/failures<br/>"
+        f"/api/v1.0/bombings<br/>"
+        f"/api/v1.0/stations<br/>"
  #       f"/api/v1.0/<start>/<end><br/>"
     )
 
