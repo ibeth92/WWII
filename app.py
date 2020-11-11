@@ -58,26 +58,28 @@ def welcome():
     )
 
 # Set up Weather
-@app.route("/api/v1.0/weather_final")
+@app.route("/api/v1.0/weather")
 def weather_final():
-# Create our session (link) from Python to the DB
-    session = Session(engine)
-
+# Create our session (link) from Python to the D
+    session = Session(engine)   
 # Query Weather date and conditions
     results =   session.query(Weather.date, Weather.type).\
                 order_by(Weather.date).all()
 
-# Convert to list of dictionaries to jsonify
-    weather_data = []
+# # Convert to list of dictionaries to jsonify
+#     weather_data = []
 
-    for date, type in results:
-        new_dict = {}
-        new_dict[date] = type
-        weather_data.append(new_dict)
+#     for date, type in results:
+#         new_dict = {}
+#         new_dict[date] = type
+#         weather_data.append(new_dict)
 
     session.close()
+    # Convert list of tuples into normal list
+    all_weather = list(np.ravel(results))
 
-    return jsonify(weather_data)
+
+    return jsonify(all_weather)
 
 # Set up Failures
 @app.route("/api/v1.0/thor_failures")
