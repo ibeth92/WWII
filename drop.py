@@ -10,30 +10,12 @@ cursor = conn.cursor()
 # Dropping weather table if already exists.
 cursor.execute("DROP TABLE IF EXISTS weapons_bombs;")
 
-cursor.execute('''CREATE TABLE weapons_bombs (
-    ID serial PRIMARY KEY,
-    MSNDATE varchar,
-    THEATER varchar,
-    TGT_COUNTRY varchar,
-    TGT_LOCATION varchar,
-    LATITUDE varchar,
-    LONGITUDE varchar,
-    AircraftName varchar,
-    NumberofHighExplosives varchar,
-    TypeofHighExplosive varchar,
-    WeightofHighExplosivelbs varchar,
-    WeightofHighExplosivetons varchar,
-    NumberofIncendiary varchar,
-    TypeofIncendiary varchar,
-    WeightofIncendiarylbs varchar,
-    WeightofIncendiarytons varchar,
-    NumberofFragmentationWeapon varchar,
-    TypeofFragmentationWeapon varchar,
-    WeightofFragmentaionWeaponlbs varchar,
-    WeightofFragmentationWeapontons varchar,
-    TotalWeightlbs varchar,
-    TotalWeighttons varchar
-);''')
+cursor.execute("DROP TABLE IF EXISTS weather;")
+# Creating table as per requirement
+# Create weather table
+
+cursor.execute("DROP TABLE IF EXISTS aircraft_failures;")
+# Create aircraft failures table
 
 # Commit your changes in the database
 conn.commit()

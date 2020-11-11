@@ -70,9 +70,9 @@ cursor.execute('''CREATE TABLE weather_stations(
 #select *
 #from weather_stations;
 # Droping weather_stations table if already exists
-cursor.execute("DROP TABLE IF EXISTS weapons_bombs;")
+cursor.execute("DROP TABLE IF EXISTS THOR_SCRAPE;")
 # Create weapons table
-cursor.execute('''CREATE TABLE weapons_bombs (
+cursor.execute('''CREATE TABLE THOR_SCRAPE (
     ID serial PRIMARY KEY,
     MSNDATE varchar,
     THEATER varchar,

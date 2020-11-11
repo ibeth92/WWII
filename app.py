@@ -38,7 +38,7 @@ for table in tables:
     print (table)
 print(Base.classes)
 # Save references to each table
-Weapons = Base.classes.weapons_bombs
+Weapons = Base.classes.THOR_SCRAPE
 Weather = Base.classes.weather_data
 Failures = Base.classes.thor_failures
 Bombings = Base.classes.bombings
@@ -60,27 +60,24 @@ def welcome():
 
 # Set up Weather
 @app.route("/api/v1.0/weather")
-def weather_final():
+def weather():
 # Create our session (link) from Python to the D
     session = Session(engine)   
 # Query Weather date and conditions
-    results =   session.query(Weather.date, Weather.type).\
-                order_by(Weather.date).all()
+    results =   session.query(Weather.Date, Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).\
+                order_by(Weather.Date).all()
 
-# # Convert to list of dictionaries to jsonify
-#     weather_data = []
+# Convert to list of dictionaries to jsonify
+    weather_data = []
 
-#     for date, type in results:
-#         new_dict = {}
-#         new_dict[date] = type
-#         weather_data.append(new_dict)
+    for result in results:
+        weather_data.append(result)
 
     session.close()
     # Convert list of tuples into normal list
-    all_weather = list(np.ravel(results))
+    #all_weather = list(np.ravel(results)
 
-
-    return jsonify(all_weather)
+    return jsonify(results)
 
 # Set up Failures
 @app.route("/api/v1.0/thor_failures")
@@ -112,7 +109,7 @@ def bombings():
     session = Session(engine)
 
 # Query Weather date and conditions
-    results =   session.query(Bombings.date, Bombings.type).\
+    results =   session.query(Bombings.date, Bombings.theater).\
                 order_by(Bombings.date).all()
 
 # Convert to list of dictionaries to jsonify
