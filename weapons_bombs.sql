@@ -13,7 +13,7 @@ CREATE TABLE THOR_SCRAPE
     TypeofHighExplosive varchar,
     WeightofHighExplosivelbs varchar,
     WeightofHighExplosivetons varchar,
-    NumberofIncendiaryvarchar varchar,
+    NumberofIncendiary varchar,
     TypeofIncendiary varchar,
     WeightofIncendiarylbs varchar,
     WeightofIncendiarytons varchar,
