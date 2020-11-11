@@ -1,4 +1,5 @@
-import sqlite3
+# Import dependencies
+# Import sqlite3
 from sqlite3 import Error
 
 import numpy as np
@@ -16,11 +17,11 @@ from flask import Flask, jsonify
 # Create an app, pass to __name__
 app = Flask(__name__)
 
-# Automap base
-Base = automap_base()
-
 # Setup Database
 engine = create_engine('sqlite:///wwii.db')
+
+# Automap base
+Base = automap_base()
 
 # Reflect an existing database into a new model
 Base.prepare(engine, reflect= True)
@@ -32,83 +33,12 @@ print (inspector.get_table_names())
 #columns = inspector.get_columns('bombings')
 #print (columns)
 
-#Connecting to sqlite
-conn = sqlite3.connect('wwii.db')
-#Creating a cursor object using the cursor() method
-cursor = conn.cursor()
-#Doping EMPLOYEE table if already exists.
-cursor.execute("DROP TABLE IF EXISTS weather_data")
-#Creating table as per requirement
-sql ='''CREATE TABLE weather_data(
-	Date DATE NOT NULL,
-	MAX INT NOT NULL, 
-	MIN INT NOT NULL,
-	MaxTemp INT NOT NULL, 
-	MinTemp INT NOT NULL,
-	Precip INT NOT NULL, 
-	WindGustSpd INT NOT NULL, 
-	Snowfall INT NOT NULL, 
-	PoorWeather INT NOT NULL, 
-	PRCP INT
-)'''
-
-#-- Create a table that gives us event locations using latitudes and longitudes
-CREATE TABLE aircraft_failures(
-	event_id INT NOT NULL,
-	MISSIONDATE DATE NOT NULL,
-	LATITUDE INT NOT NULL, 
-	LONGITUDE INT NOT NULL,
-	WEATHERFAILS INT NOT NULL,
-	MECHANICALFAILS INT NOT NULL,
-	MISCFAILS INT NOT NULL,
-
-PRIMARY KEY(MSNDATE),
-FOREIGN KEY(event_id)
-	REFERENCES event_id(id)
-#);  
-#CREATE TABLE bombings (
-    [id] INT IDENTITY(1,1) NOT NULL ,
-    [date] dateTime  NOT NULL ,
-    [theater] VARCHAR(25)  NOT NULL ,
-    [naf] VARCHAR(10)  NOT NULL ,
-    [country_flying_mission] VARCHAR  NOT NULL ,
-    [tgt_country] VARCHAR  NOT NULL ,
-    [tgt_city] VARCHAR  NOT NULL ,
-    [latitude] INT  NOT NULL ,
-    [longitude] INT  NOT NULL ,
-    CONSTRAINT [PK_bombings] PRIMARY KEY CLUSTERED (
-        [id] ASC
-# )
-cursor.execute(sql)
-print("Table created successfully........")
-# Commit your changes in the database
-conn.commit()
-#Closing the connection
-conn.close()
-
-# Dropping clean_weather and weather tables created on accident
-# DROP TABLE bombings;
-# DROP TABLE thor_failures;
-# DROP TABLE weapons_bombs;
-# DROP TABLE weather_final;
-# DROP TABLE weather_stations;
-# cursor.execute("""
-#     DROP TABLE weather_final;
-#     """)
-# print("Table dropped... ")
-
-# Commit your changes in the database
-# conn.commit()
-
-# Closing the connection
-# conn.close()
-
 # Create for loop that prints table names and columns
 for table in tables:
     columns = inspector.get_columns(table)
     print (columns)
     print (table)
-
+print(Base.classes)
 # Save references to each table
 # Weapons = Base.classes.weapons_bombs
 Weather = Base.classes.weather_data
