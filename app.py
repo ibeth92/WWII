@@ -52,16 +52,16 @@ def welcome():
         f"A Day in History WWII<br/>"
         f"Avaialble Routes:<br/>"
         f"/api/v1.0/weapons<br/>"
-        f"/api/v1.0/weather<br/>"
-        f"/api/v1.0/failures<br/>"
+        f"/api/v1.0/weather_data<br/>"
+        f"/api/v1.0/thor_failures<br/>"
         f"/api/v1.0/bombings<br/>"
         f"/api/v1.0/stations<br/>"
- #       f"/api/v1.0/<start>/<end><br/>"
+        # f"/api/v1.0/<start>/<end><br/>"
     )
 
 # Set up Weather
-@app.route("/api/v1.0/weather")
-def weather():
+@app.route("/api/v1.0/weather_data")
+def weather_data():
 
 # Create our session (link) from Python to the D
     session = Session(engine)  
