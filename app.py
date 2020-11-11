@@ -71,7 +71,7 @@ def weather():
 
 # Convert to list of dictionaries to jsonify
     weather_data = []
-    for row in rows:
+    for row in weather_rows:
         wd = collections.OrderedDict()
         wd['Date'] = row[0]
         wd['MAX'] = row[1]
@@ -98,11 +98,11 @@ def thor_failures():
     session = Session(engine)
 
 # Query Weather date and conditions
-    failures_rows = session.query(str(Failures.MISSIONDATE),Failures.LATITUDE, Failures.LONGITUDE, Failures.WEATHERFAILS, Failures.MECHANICALFAILS, Failures.MISCFAILS).all()
+    failures_rows = session.query((Failures.MISSIONDATE),Failures.LATITUDE, Failures.LONGITUDE, Failures.WEATHERFAILS, Failures.MECHANICALFAILS, Failures.MISCFAILS).all()
 
 # Convert to list of dictionaries to jsonify
     failures_data = []
-    for row in rows:
+    for row in failures_rows:
         f = collections.OrderedDict()
         f['MISSIONDATE'] = row[0]
         f['LATITUDE'] = row[1]
