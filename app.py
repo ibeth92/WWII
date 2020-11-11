@@ -2,7 +2,8 @@
 import numpy as np
 import pandas as pd
 import os
-
+import json
+import collections
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -110,17 +111,27 @@ def bombings():
     session = Session(engine)
 
 # Query Weather date and conditions
-    bombing_results =   session.query(str(Bombings.date),Bombings.theater, Bombings.naf, Bombings.country_flying_mission, Bombings.tgt_country, Bombings.tgt_city, Bombings.latitude, Bombings.longitude).all()
+    rows = session.query(str(Bombings.date),Bombings.theater, Bombings.naf, Bombings.country_flying_mission, Bombings.tgt_country, Bombings.tgt_city, Bombings.latitude, Bombings.longitude).all()
 
 # Convert to list of dictionaries to jsonify
-    bombings_data = []
+    bombing_data = []
+    for row in rows:
+        d = collections.OrderedDict()
+        d['date'] = row[0]
+        d['theater'] = row[1]
+        d['naf'] = row[2]
+        d['country_flying_mission'] = row[3]
+        d['tgt_country'] = row[4]
+        d['tgt_city'] = row[5]
+        d['lat'] = row[6]
+        d['lon'] = row[7]
+        bombing_data.append(d)
 
-    for result in bombing_results:
-        bombings_data.append(result)
+    j = json.dumps(bombing_data)
 
     session.close()
-    # bombing_data = jsonify(bombings_data)
-    return jsonify(bombings_data)
+    
+    return j
 
 if __name__ == "__main__":
     app.run(debug=True)
