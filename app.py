@@ -47,14 +47,14 @@ session = Session(engine)
 @app.route("/")
 def welcome():
     return(
-        f"A Day in History WWII<br/>"
+        f"A Day in History WWII<br>"
         f"Avaialble Routes:<br>"
-        f"/api/v1.0/weapons<br/>"
-        f"/api/v1.0/weather<br/>"
-        f"/api/v1.0/failures<br/>"
-        f"/api/v1.0/bombings<br/>"
-        f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/<start>/<end><br/>"
+        f"/api/v1.0/weapons<br>"
+        f"/api/v1.0/weather<br>"
+        f"/api/v1.0/failures<br>"
+        f"/api/v1.0/bombings<br>"
+        f"/api/v1.0/stations<br>"
+ #       f"/api/v1.0/<start>/<end><br/>"
     )
 
 # Set up Weather
