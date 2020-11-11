@@ -133,8 +133,6 @@ def bombings():
     
     return j
 
-if __name__ == "__main__":
-    app.run(debug=True)
 
 # Set up Weapons
 @app.route("/api/v1.0/weapons")
@@ -190,3 +188,5 @@ def stations():
  
     return jsonify(station_j)
 
+if __name__ == "__main__":
+    app.run(debug=True)
