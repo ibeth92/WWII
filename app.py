@@ -25,17 +25,17 @@ Base.prepare(engine, reflect= True)
 
 inspector = inspect(engine)
 tables = inspector.get_table_names()
-print (inspector.get_table_names())
+# print (inspector.get_table_names())
 
 #columns = inspector.get_columns('bombings')
 #print (columns)
 
 # Create for loop that prints table names and columns
-for table in tables:
-    columns = inspector.get_columns(table)
-    print (columns)
-    print (table)
-print(Base.classes)
+# for table in tables:
+#     columns = inspector.get_columns(table)
+#     print (columns)
+#     print (table)
+# print(Base.classes)
 # Save references to each table
 Weapons = Base.classes.weapons_bombs
 Weather = Base.classes.weather_data
@@ -111,7 +111,7 @@ def bombings():
     session = Session(engine)
 
 # Query Weather date and conditions
-    results =   session.query(Bombings.date, Bombings.type).\
+    results =   session.query(Bombings.date, Bombings.theater, Bombings.naf, Bombings.country_flying_mission, Bombings.tgt_country, Bombings.tgt_city, Bombings.latitude, Bombings.longitude).\
                 order_by(Bombings.date).all()
 
 # Convert to list of dictionaries to jsonify
