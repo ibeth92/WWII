@@ -143,17 +143,26 @@ def weapons():
     session = Session(engine)
 
 # Query Weapons date and type
-    weapon_results = session.query(Weapons.MSNDATE, Weapons.LATITUDE, Weapons.LONGITUDE, Weapons.AircraftName, Weapons.TotalWeightlbs, Weapons.TotalWeighttons).all()
+    weapon_rows = session.query(Weapons.MSNDATE, Weapons.LATITUDE, Weapons.LONGITUDE, Weapons.AircraftName, Weapons.TotalWeightlbs, Weapons.TotalWeighttons).all()
 
 # Convert to list of dictionaries to jsonify
     weapons_data = []
 
-    for result in weapon_results:
-        weapons_data.append(result)
+    for row in weapon_rows:
+        w = collections.OrderedDict()
+        w['MSNDATE'] = row[0]
+        w['LATITUDE'] = row[1]
+        w['LONGITUDE'] = row[2]
+        w['AircraftName'] = row[3]
+        w['TotalWeightlbs'] = row[4]
+        w['TotalWeighttons'] = row[5]
+        weapons_data.append(w)
+
+    weapon_j = json.dumps(weapons_data)
 
     session.close()
 
-    return jsonify(weapons_data)
+    return jsonify(weapon_j)
 
 
 # Set up Stations
@@ -166,11 +175,18 @@ def stations():
     stations = []
 
 # Query all stations
-    station_results = session.query(Station.WBAN, Station.NAME, Station.State_Country, Station.Latitude, Station.Longitude).all()
-    for result in station_results:
-        stations.append(result)
+    station_rows = session.query(Station.WBAN, Station.NAME, Station.State_Country, Station.Latitude, Station.Longitude).all()
+    for row in station_rows:
+        s = collections.OrderedDict()
+        s['WBAN'] = row[0]
+        s['NAME'] = row[1]
+        s['State_Country'] = row[2]
+        s['Latitude'] = row[3]
+        s['Longitude'] = row[4]
+        stations.append(s)
 
+    station_j = json.dumps(stations)
     session.close()
  
-    return jsonify(stations)
+    return jsonify(station_j)
 
