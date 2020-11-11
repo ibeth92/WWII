@@ -26,17 +26,17 @@ Base.prepare(engine, reflect= True)
 
 inspector = inspect(engine)
 tables = inspector.get_table_names()
-print (inspector.get_table_names())
+# print (inspector.get_table_names())
 
 #columns = inspector.get_columns('bombings')
 #print (columns)
 
 # Create for loop that prints table names and columns
-for table in tables:
-    columns = inspector.get_columns(table)
-    print (columns)
-    print (table)
-print(Base.classes)
+# for table in tables:
+#     columns = inspector.get_columns(table)
+#     print (columns)
+#     print (table)
+# print(Base.classes)
 # Save references to each table
 Weapons = Base.classes.THOR_SCRAPE
 Weather = Base.classes.weather_data
@@ -66,18 +66,19 @@ def weather():
 # Query Weather date and conditions
     results =   session.query(Weather.Date, Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).\
                 order_by(Weather.Date).all()
-
-# Convert to list of dictionaries to jsonify
-    weather_data = []
-
     for result in results:
-        weather_data.append(result)
+        return print(result)
 
-    session.close()
-    # Convert list of tuples into normal list
-    #all_weather = list(np.ravel(results)
+# # Convert to list of dictionaries to jsonify
+#     weather_data = []
 
-    return jsonify(results)
+#     for result in results:
+#         weather_data.append(result)
+
+#     session.close()
+#     # # Convert list of tuples into normal list
+#     # all_weather = list(np.ravel(results)
+#     return jsonify(weather_data)
 
 # Set up Failures
 @app.route("/api/v1.0/thor_failures")
