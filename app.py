@@ -116,16 +116,16 @@ def bombings():
 # Convert to list of dictionaries to jsonify
     bombing_data = []
     for row in rows:
-        d = collections.OrderedDict()
-        d['date'] = row[0]
-        d['theater'] = row[1]
-        d['naf'] = row[2]
-        d['country_flying_mission'] = row[3]
-        d['tgt_country'] = row[4]
-        d['tgt_city'] = row[5]
-        d['lat'] = row[6]
-        d['lon'] = row[7]
-        bombing_data.append(d)
+        b = collections.OrderedDict()
+        b['date'] = row[0]
+        b['theater'] = row[1]
+        b['naf'] = row[2]
+        b['country_flying_mission'] = row[3]
+        b['tgt_country'] = row[4]
+        b['tgt_city'] = row[5]
+        b['lat'] = row[6]
+        b['lon'] = row[7]
+        bombing_data.append(b)
 
     j = json.dumps(bombing_data)
 
