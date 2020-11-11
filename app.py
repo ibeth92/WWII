@@ -25,12 +25,12 @@ Base = automap_base()
 # Reflect an existing database into a new model
 Base.prepare(engine, reflect= True)
 
-inspector = inspect(engine)
-tables = inspector.get_table_names()
+# inspector = inspect(engine)
+# tables = inspector.get_table_names()
 # print (inspector.get_table_names())
 
-#columns = inspector.get_columns('bombings')
-#print (columns)
+# columns = inspector.get_columns('bombings')
+# print (columns)
 
 # Create for loop that prints table names and columns
 # for table in tables:

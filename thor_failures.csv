@@ -1,4 +1,4 @@
-,latitude,longitude,missiondate,weatherfails,mechanicalfails,miscfails
+,LATITUDE,LONGITUDE,MISSIONDATE,WEATHERFAILS,MECHANICALFAILS,MISCFAILS
 3,38.43,15.9,1943-08-15,,,1.0
 1237,39.27,16.25,1943-08-19,1.0,,
 1838,40.67,14.73,1943-08-22,,,10.0
