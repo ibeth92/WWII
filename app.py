@@ -126,43 +126,40 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 # Set up Weapons
-# @app.route("/api/v1.0/weapons")
-# def weapons():
+@app.route("/api/v1.0/weapons")
+def weapons():
 # Create our session (link) from Python to the DB
-#     session = Session(engine)
+    session = Session(engine)
 
 # Query Weapons date and type
-#     results =   session.query(Weapons.date, Weapons.type).\
-#                 order_by(Weapons.date).all()
+    weapon_results = session.query(Weapons.MSNDATE, Weapons.LATITUDE, Weapons.LONGITUDE, Weapons.AircraftName, Weapons.TotalWeightlbs, Weapons.TotalWeighttons).all()
 
 # Convert to list of dictionaries to jsonify
-#     weapons_data = []
+    weapons_data = []
 
-#     for date, type in results:
-#         new_dict = {}
-#         new_dict[date] = type
-#         weapons_data.append(new_dict)
+    for result in weapon_results:
+        weapons_data.append(result)
 
-#     session.close()
+    session.close()
 
-#     return jsonify(weapons_data)
+    return jsonify(weapons_data)
 
 
 # Set up Stations
-# @app.route("/api/v1.0/stations")
-# def stations():
+@app.route("/api/v1.0/stations")
+def stations():
 
 # Create our session (link) from Python to the DB
-#     session = Session(engine)
+    session = Session(engine)
 
-#     stations = {}
+    stations = []
 
 # Query all stations
-#     results = session.query(Station.station, Station.name).all()
-#     for sta, name in results:
-#         stations[sta] = name
+    station_results = session.query(Station.WBAN, Station.NAME, Station.State_Country, Station.Latitude, Station.Longitude).all()
+    for result in station_results:
+        stations.append(result)
 
-#     session.close()
+    session.close()
  
-#     return jsonify(stations)
+    return jsonify(stations)
 
