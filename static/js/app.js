@@ -1,13 +1,14 @@
+// 'data' = data.js list of objects
 let tableData = data;
+// d3.csv, d3.json
+let tbody = d3.select('tbody');
 
-let tbody =d3.select('tbody');
-
-tableData.forEach(function (ufosightings) {
-    console.log(ufosightings);
+tableData.forEach(function (bombingevent) {
+    console.log(bombingevent);
 
     let row = tbody.append('tr');
 
-    Object.entries(ufosightings).forEach(function([key, value]) {
+    Object.entries(bombingevent).forEach(function([key, value]) {
         console.log(key, value);
 
         let cell = row.append('td');
@@ -25,8 +26,8 @@ function runEnter() {
     let inputValue = inputElement.property('value');
 
     console.log(inputValue);
-
-    let filteredData = tableData.filter(sightings => sightings.datetime === inputValue);
+// 'datetime' should be changed to our 'date' field
+    let filteredData = tableData.filter(bombings => bombings.datetime === inputValue);
 
     console.log(filteredData);
 

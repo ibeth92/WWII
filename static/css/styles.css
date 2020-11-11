@@ -27,6 +27,11 @@ button {
     /* background-color: tomato; */
     text-align: center;
 }
+
+#logo-link {
+    text-decoration: none;
+    color: white;
+}
 /* search input */
 .search-bar{
     padding: 10px;
