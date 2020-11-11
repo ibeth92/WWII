@@ -62,25 +62,35 @@ def welcome():
 # Set up Weather
 @app.route("/api/v1.0/weather")
 def weather():
+
 # Create our session (link) from Python to the D
-    session = Session(engine)   
+    session = Session(engine)  
+
 # Query Weather date and conditions
-    results =   session.query(Weather.Date, Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).\
-                order_by(Weather.Date).all()
-    for result in results:
-        return print(result)
+    weather_rows =  session.query(Weather.Date, Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).all()
 
-# # Convert to list of dictionaries to jsonify
-#     weather_data = []
+# Convert to list of dictionaries to jsonify
+    weather_data = []
+    for row in rows:
+        wd = collections.OrderedDict()
+        wd['Date'] = row[0]
+        wd['MAX'] = row[1]
+        wd['MIN'] = row[2]
+        wd['MaxTemp'] = row[3]
+        wd['MinTemp'] = row[4]
+        wd['Precip'] = row[5]
+        wd['WindGustSpd'] = row[6]
+        wd['Snowfall'] = row[7]
+        wd['PoorWeather'] = row[8]
+        wd['PRCP'] = row[9]
+        weather_data.append(wd)
 
-#     for result in results:
-#         weather_data.append(result)
+    weather_j = json.dumps(weather_data)
 
-#     session.close()
-#     # # Convert list of tuples into normal list
-#     # all_weather = list(np.ravel(results)
-#     return jsonify(weather_data)
-
+    session.close()
+    
+    return weather_j
+    
 # Set up Failures
 @app.route("/api/v1.0/thor_failures")
 def thor_failures():
@@ -88,20 +98,25 @@ def thor_failures():
     session = Session(engine)
 
 # Query Weather date and conditions
-    results =   session.query(Failures.date, Failures.type).\
-                order_by(Failures.date).all()
+    failures_rows = session.query(str(Failures.MISSIONDATE),Failures.LATITUDE, Failures.LONGITUDE, Failures.WEATHERFAILS, Failures.MECHANICALFAILS, Failures.MISCFAILS).all()
 
 # Convert to list of dictionaries to jsonify
     failures_data = []
+    for row in rows:
+        f = collections.OrderedDict()
+        f['MISSIONDATE'] = row[0]
+        f['LATITUDE'] = row[1]
+        f['LONGITUDE'] = row[2]
+        f['WEATHERFAILS'] = row[3]
+        f['MECHANICALFAILS'] = row[4]
+        f['MISCFAILS'] = row[5]
+        failures_data.append(f)
 
-    for date, type in results:
-        new_dict = {}
-        new_dict[date] = type
-        failures_data.append(new_dict)
+    failures_j = json.dumps(failures_data)
 
     session.close()
-
-    return jsonify(failures_data)
+    
+    return failures_j
 
 # Set up Bombings
 @app.route("/api/v1.0/bombings")
