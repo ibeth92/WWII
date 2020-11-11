@@ -1,3 +1,12 @@
+// let url = 'http://127.0.0.1:5000/api/v1.0/bombings'
+
+// async function getData() {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log(data);
+// }
+
+// getData();
 // 'data' = data.js list of objects
 let tableData = data;
 // d3.csv, d3.json
