@@ -89,7 +89,7 @@ def weather_data():
 
     session.close()
     
-    return weather_j
+    return jsonify(weather_j)
     
 # Set up Failures
 @app.route("/api/v1.0/thor_failures")
@@ -116,7 +116,7 @@ def thor_failures():
 
     session.close()
     
-    return failures_j
+    return jsonify(failures_j)
 
 # Set up Bombings
 @app.route("/api/v1.0/bombings")
@@ -146,7 +146,7 @@ def bombings():
 
     session.close()
     
-    return j
+    return jsonify(j)
 
 
 # Set up Weapons
