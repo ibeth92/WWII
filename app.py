@@ -52,7 +52,7 @@ session = Session(engine)
 def homepage():
     return render_template('index.html')
 
-@app.route("/home", methods=['GET'])
+@app.route("/api/v1.0/home", methods=['GET'])
 @cross_origin()
 def welcome():
     return(
