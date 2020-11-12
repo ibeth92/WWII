@@ -56,6 +56,7 @@ def welcome():
         f"A Day in History WWII<br/>"
         f"Avaialble Routes:<br/>"
         f"/api/v1.0/wwii_data<br/>"
+        f"/api/v1.0/wwii_map<br/>"
         f"/api/v1.0/weather_data<br/>"
         f"/api/v1.0/thor_failures<br/>"
         f"/api/v1.0/bombings<br/>"
@@ -77,25 +78,50 @@ def wwii_data():
 # Convert to list of dictionaries to jsonify
     wwii = []
     for row in wwii_rows:
-        wd = collections.OrderedDict()
-        wd['DATE'] = row[0]
-        wd['THEATER'] = row[1]
-        wd['NAF'] = row[2]
-        wd['COUNTRY_FLYING_MISSION'] = row[3]
-        wd['TGT_COUNTRY'] = row[4]
-        wd['TGT_LOCATION'] = row[5]
-        wd['LATITUDE'] = row[6]
-        wd['LONGITUDE'] = row[7]
-        wd['AIRCRAFT_NAME'] = row[8]
-        wd['MAX'] = row[9]
-        wd['MIN'] = row[10]
-        wwii.append(wd)
+        wm = collections.OrderedDict()
+        wm['DATE'] = row[0]
+        wm['THEATER'] = row[1]
+        wm['NAF'] = row[2]
+        wm['COUNTRY_FLYING_MISSION'] = row[3]
+        wm['TGT_COUNTRY'] = row[4]
+        wm['TGT_LOCATION'] = row[5]
+        wm['LATITUDE'] = row[6]
+        wm['LONGITUDE'] = row[7]
+        wm['AIRCRAFT_NAME'] = row[8]
+        wm['MAX'] = row[9]
+        wm['MIN'] = row[10]
+        wwii.append(wm)
 
     weather_j = json.dumps(wwii)
 
     session.close()
     
     return jsonify(weather_j)
+
+@app.route("/api/v1.0/wwii_map", methods=['GET'])
+@cross_origin()
+def wwii_map():
+
+# Create our session (link) from Python to the D
+    session = Session(engine)  
+
+# Query Weather date and conditions
+    wwii_map_rows =  session.query(str(WWII.MSNDATE), WWII.LATITUDE, WWII.LONGITUDE).all()
+
+# Convert to list of dictionaries to jsonify
+    wwii_map = []
+    for row in wwii_map_rows:
+        wm = collections.OrderedDict()
+        wm['DATE'] = row[0]
+        wm['LATITUDE'] = row[1]
+        wm['LONGITUDE'] = row[2]
+        wwii_map.append(wm)
+
+    maps_j = json.dumps(wwii_map)
+
+    session.close()
+    
+    return jsonify(maps_j)
     
 # Set up Failures
 @app.route("/api/v1.0/thor_failures", methods=['GET'])
