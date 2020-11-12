@@ -43,4 +43,3 @@ function pointToLayer(mapevent) {
     bombMarkers.push(marker);
 }
 createMap(L.layerGroup(bombMarkers));
-
