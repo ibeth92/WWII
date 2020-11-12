@@ -1,18 +1,45 @@
-let weapon_url = 'http://127.0.0.1:5000/api/v1.0/wwii_data'
-fetch(weapon_url)
-    .then(response => response.json())
-    .then((mapData) => {
-        // console.log(mapData)
-        data = JSON.parse(mapData);
-        // console.log(data)
-        data.forEach(function (mapevent) {
-            console.log(mapevent);
-        })
-})
-.catch(err => console.log(err))
+// let weapon_url = 'http://127.0.0.1:5000/api/v1.0/wwii_data'
+// fetch(weapon_url)
+//     .then(response => response.json())
+//     .then((mapData) => {
+//         // console.log(mapData)
+//         data = JSON.parse(mapData);
+//         // console.log(data)
+//         data.forEach(function (mapevent) {
+//             console.log(mapevent);
+//         })
+// })
+// .catch(err => console.log(err))
 
+
+let dropItems = ['Target Country','Target Location', 'Country Flying Mission']
+let points = {'Target Country':'TGT_COUNTRY','Target Location':'TGT_LOCATION', 'Country Flying Mission':'COUNTRY_FLYING_MISSION'}
+let selectID
+dropItems.forEach(dropDownMenu => {
+    d3.select("#selDataset")
+    // option is the html element
+    .append("option")
+    .text(dropDownMenu)
+    .property("value", dropDownMenu)
+});
+// listens for when there is a change to the selDataset, when there is a change then it runs function updateDisplay
+d3.selectAll('#selDataset').on("change", handleSubmit); 
+function handleSubmit() {
+    // use this to prevent the page from refreshing... may or may not be necessary.
+    d3.event.preventDefault();
+    // select the value from the dropdown
+    selectedId = d3.select('#selDataset').node().value;
+    let selectedObj = whatever[selectedId] 
+    console.log(selectedObj);
+    // build your plots
+    buildMap(selectedObj);
+};
 
 function dataPlots(id) {
+// import data with d3 and json and set dropdown menu to names array
+    const url = "/api/v1.0/wwii_data";
+    d3.json(url).then(function(response) {
+            let allData= response;
     let testData = mapevent;
     let filteredData = testData.metadata.filter(meta => meta.id ==id);
     // Bring in sample data by id 
@@ -29,6 +56,19 @@ function dataPlots(id) {
                 .text(`${key}: ${value}`)
             );
 
+// // Retrieve top 10 OTU ids for plot OTU and reverse them
+//     let idsampleValues = cleanData[0].sample_values.slice(0,10).reverse();
+// //console.log(idsampleValues);
+//     let topOTU = cleanData[0].otu_ids.slice(0, 10).reverse();
+// // Transform OTUs for plotting
+// // let otu_id = topOTU.map(d => "OTU " + d)
+//     let labels = cleanData[0].otu_labels.slice(0,10).reverse();
+// // Create label array
+//     let labelArray = []
+// // For loop
+//     for(let i=0; i<10; i++) {
+//             labelArray.push("OTU" + cleanData[0].otu_ids[i])
+//         }
 /**
  * Helper function to select stock data
 //  * Returns an array of values
