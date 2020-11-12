@@ -29,7 +29,7 @@ Base.prepare(engine, reflect= True)
 # tables = inspector.get_table_names()
 # print (inspector.get_table_names())
 
-# columns = inspector.get_columns('bombings')
+# columns = inspector.get_columns('thor_failures')
 # print (columns)
 
 # Create for loop that prints table names and columns
@@ -67,7 +67,7 @@ def weather_data():
     session = Session(engine)  
 
 # Query Weather date and conditions
-    weather_rows =  session.query(Weather.Date, Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).all()
+    weather_rows =  session.query(str(Weather.Date), Weather.MAX, Weather.MIN, Weather.MaxTemp, Weather.MinTemp, Weather.Precip, Weather.WindGustSpd, Weather.Snowfall, Weather.PoorWeather, Weather.PRCP).all()
 
 # Convert to list of dictionaries to jsonify
     weather_data = []
@@ -98,7 +98,7 @@ def thor_failures():
     session = Session(engine)
 
 # Query Weather date and conditions
-    failures_rows = session.query((Failures.MISSIONDATE),Failures.LATITUDE, Failures.LONGITUDE, Failures.WEATHERFAILS, Failures.MECHANICALFAILS, Failures.MISCFAILS).all()
+    failures_rows = session.query(str(Failures.MISSIONDATE),Failures.LATITUDE, Failures.LONGITUDE, Failures.WEATHERFAILS, Failures.MECHANICALFAILS, Failures.MISCFAILS).all()
 
 # Convert to list of dictionaries to jsonify
     failures_data = []
