@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import os
+
 import json
 import collections
 import sqlalchemy
@@ -11,6 +12,7 @@ from sqlalchemy import create_engine, inspect
 
 import flask 
 from flask import Flask, jsonify
+from flask_cors import cross_origin 
 
 # Setup Flask
 # Create an app, pass to __name__
@@ -46,7 +48,8 @@ Bombings = Base.classes.bombings
 Station = Base.classes.weather_stations
 session = Session(engine)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
+@cross_origin()
 def welcome():
     return(
         f"A Day in History WWII<br/>"
@@ -60,7 +63,8 @@ def welcome():
     )
 
 # Set up Weather
-@app.route("/api/v1.0/weather_data")
+@app.route("/api/v1.0/weather_data", methods=['GET'])
+@cross_origin()
 def weather_data():
 
 # Create our session (link) from Python to the D
@@ -92,7 +96,8 @@ def weather_data():
     return jsonify(weather_j)
     
 # Set up Failures
-@app.route("/api/v1.0/thor_failures")
+@app.route("/api/v1.0/thor_failures", methods=['GET'])
+@cross_origin()
 def thor_failures():
 # Create our session (link) from Python to the DB
     session = Session(engine)
@@ -119,7 +124,8 @@ def thor_failures():
     return jsonify(failures_j)
 
 # Set up Bombings
-@app.route("/api/v1.0/bombings")
+@app.route("/api/v1.0/bombings", methods=['GET'])
+@cross_origin()
 def bombings():
 
 # Create our session (link) from Python to the DB
@@ -150,7 +156,8 @@ def bombings():
 
 
 # Set up Weapons
-@app.route("/api/v1.0/weapons")
+@app.route("/api/v1.0/weapons", methods=['GET'])
+@cross_origin()
 def weapons():
 # Create our session (link) from Python to the DB
     session = Session(engine)
@@ -179,7 +186,8 @@ def weapons():
 
 
 # Set up Stations
-@app.route("/api/v1.0/stations")
+@app.route("/api/v1.0/stations", methods=['GET'])
+@cross_origin()
 def stations():
 
 # Create our session (link) from Python to the DB
