@@ -7,7 +7,7 @@ fetch(weapon_url)
 
         for (let d = 0; d < data.length; d ++) {
 
-            const coords = []
+            let coords = []
             let lat = data[d].LATITUDE
             let lon = data[d].LONGITUDE
 
@@ -16,7 +16,7 @@ fetch(weapon_url)
 
             console.log(coords)
             // console.log('Date:', data[d].DATE)
-            const mymap = L.map('map-id').setView([0, 0], 5);
+            let mymap = L.map('map-id').setView([51, 0], 2);
 
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -27,6 +27,11 @@ fetch(weapon_url)
                 accessToken: API_KEY
             }).addTo(mymap);
 
-            var marker = L.marker(coords).addTo(mymap);
+            let marker = L.marker(coords).addTo(mymap);
+
+            for (let i = 0; i < coords.length; i++) {
+                marker = new L.marker(coords)
+                  .addTo(mymap);
+              }
         }
-    }).catch(err => console.log(err));
+ }).catch(err => console.log(err));
