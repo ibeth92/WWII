@@ -17,9 +17,11 @@ fetch(weapon_url)
             });
             console.log(mapevent);
 
+            function createMap(mapevent);
+
             let myMap = L.map("map").setView([51.50, -0.09], 5);
 
-            L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+            let streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
                 attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
                 tileSize: 512,
                 maxZoom: 20,
@@ -34,12 +36,3 @@ fetch(weapon_url)
             console.log(mapevent.LONGITUDE)
         })
     }).catch(err => console.log(err))
-
-let bombMarkers = [];
-
-function pointToLayer(mapevent) {
-    let marker = L.Marker([mapLat, mapLon])
-        .bindPopup("<h3>" + mapDate + <hr><h3>Location of Bomb Dropped: " + mapevent.LATITUDE + + mapevent.LONGITUDE"</h3>");
-    bombMarkers.push(marker);
-}
-createMap(L.layerGroup(bombMarkers));
