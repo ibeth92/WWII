@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // let weapon_url = 'http://127.0.0.1:5000/api/v1.0/wwii_data'
 // fetch(weapon_url)
 //     .then(response => response.json())
@@ -40,6 +41,23 @@ function dataPlots(id) {
     const url = "/api/v1.0/wwii_data";
     d3.json(url).then(function(response) {
             let allData= response;
+=======
+let weapon_url = 'http://127.0.0.1:5000/api/v1.0/wwii_data'
+fetch(weapon_url)
+    .then(response => response.json())
+    .then((mapData) => {
+        // console.log(mapData)
+        data = JSON.parse(mapData);
+        // console.log(data)
+        data.forEach(function (mapevent) {
+            console.log(mapevent);
+        })
+})
+.catch(err => console.log(err))
+
+
+function dataPlots(id) {
+>>>>>>> andrew
     let testData = mapevent;
     let filteredData = testData.metadata.filter(meta => meta.id ==id);
     // Bring in sample data by id 
@@ -56,6 +74,7 @@ function dataPlots(id) {
                 .text(`${key}: ${value}`)
             );
 
+<<<<<<< HEAD
 // // Retrieve top 10 OTU ids for plot OTU and reverse them
 //     let idsampleValues = cleanData[0].sample_values.slice(0,10).reverse();
 // //console.log(idsampleValues);
@@ -69,6 +88,8 @@ function dataPlots(id) {
 //     for(let i=0; i<10; i++) {
 //             labelArray.push("OTU" + cleanData[0].otu_ids[i])
 //         }
+=======
+>>>>>>> andrew
 /**
  * Helper function to select stock data
 //  * Returns an array of values

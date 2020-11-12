@@ -4,42 +4,34 @@ fetch(weapon_url)
     .then((mapData) => {
         // console.log(mapData)
         data = JSON.parse(mapData);
-        // console.log(data)
 
-        data.forEach(function (mapevent) {
-            mapDates = []
-            mapDate = mapevent.DATE;
-            mapLat = mapevent.LATITUDE;
-            mapLon = mapevent.LONGITUDE;
-            mapDates.push({
-                DATE: mapDate,
-                COORDS: [mapLat, mapLon],
-            });
-            console.log(mapevent);
+        for (let d = 0; d < data.length; d ++) {
 
-            let myMap = L.map("map").setView([51.50, -0.09], 5);
+            let coords = []
+            let lat = data[d].LATITUDE
+            let lon = data[d].LONGITUDE
 
-            L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-                attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+            
+            coords.push(lat, lon)
+
+            console.log(coords)
+            // console.log('Date:', data[d].DATE)
+            let mymap = L.map('map-id').setView([51, 0], 2);
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
                 tileSize: 512,
-                maxZoom: 20,
                 zoomOffset: -1,
-                id: "mapbox/streets-v11",
                 accessToken: API_KEY
-            }).addTo(myMap);
+            }).addTo(mymap);
 
+            let marker = L.marker(coords).addTo(mymap);
 
-            console.log(mapevent.DATE);
-            console.log(mapevent.LATITUDE);
-            console.log(mapevent.LONGITUDE)
-        })
-    }).catch(err => console.log(err))
-
-let bombMarkers = [];
-
-function pointToLayer(mapevent) {
-    let marker = L.Marker([mapLat, mapLon])
-        .bindPopup("<h3>" + mapDate + <hr><h3>Location of Bomb Dropped: " + mapevent.LATITUDE + + mapevent.LONGITUDE"</h3>");
-    bombMarkers.push(marker);
-}
-createMap(L.layerGroup(bombMarkers));
+            for (let i = 0; i < coords.length; i++) {
+                marker = new L.marker(coords)
+                  .addTo(mymap);
+              }
+        }
+ }).catch(err => console.log(err));
