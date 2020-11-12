@@ -56,12 +56,21 @@ def welcome():
         f"A Day in History WWII<br/>"
         f"Avaialble Routes:<br/>"
         f"/api/v1.0/wwii_data<br/>"
+<<<<<<< HEAD
         f"/api/v1.0/weather_data<br/>"
         f"/api/v1.0/thor_failures<br/>"
         f"/api/v1.0/bombings<br/>"
         f"/api/v1.0/stations<br/>"
         # f"/api/v1.0/<start>/<end><br/>"
 )
+=======
+    #     f"/api/v1.0/weather_data<br/>"
+    #     f"/api/v1.0/thor_failures<br/>"
+    #     f"/api/v1.0/bombings<br/>"
+    #     f"/api/v1.0/stations<br/>"
+    #     # f"/api/v1.0/<start>/<end><br/>"
+    )
+>>>>>>> master
 
 # Set up Weather
 @app.route("/api/v1.0/wwii_data", methods=['GET'])
@@ -72,7 +81,11 @@ def wwii_data():
     session = Session(engine)  
 
 # Query Weather date and conditions
+<<<<<<< HEAD
     wwii_rows =  session.query(str(WWII.MSNDATE), WWII.THEATER, WWII.NAF, WWII.COUNTRY_FLYING_MISSION, WWII.TGT_COUNTRY, WWII.TGT_LOCATION, WWII.LATITUDE, WWII.LONGITUDE, WWII.AIRCRAFT_NAME, WWII.MAX, WWII.MAX).all()
+=======
+    wwii_rows =  session.query(str(WWII.DATE), WWII.THEATER, WWII.NAF, WWII.COUNTRY_FLYING_MISSION, WWII.TGT_COUNTRY, WWII.TGT_LOCATION, WWII.LATITUDE, WWII.LONGITUDE, WWII.AIRCRAFT_NAME, WWII.MAX, WWII.MAX).all()
+>>>>>>> master
 
 # Convert to list of dictionaries to jsonify
     wwii = []
@@ -91,7 +104,7 @@ def wwii_data():
         wd['MIN'] = row[10]
         wwii.append(wd)
 
-    weather_j = json.dumps( wwii)
+    weather_j = json.dumps(wwii)
 
     session.close()
     
