@@ -1,4 +1,4 @@
-let weapon_url = 'http://127.0.0.1:5000/api/v1.0/wwii_map'
+let weapon_url = '/api/v1.0/wwii_map'
 fetch(weapon_url)
     .then(response => response.json())
     .then((mapData) => {

@@ -1,1 +1,1 @@
-web: gunicorn WWII.app:app
+web: gunicorn app:app -t 300
