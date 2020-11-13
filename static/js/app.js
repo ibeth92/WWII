@@ -1,4 +1,4 @@
-const bombing_url = 'http://127.0.0.1:5000/api/v1.0/wwii_data'
+const bombing_url = '/api/v1.0/wwii_data'
 fetch(bombing_url)
     .then(response => response.json())
     .then((data) => {
