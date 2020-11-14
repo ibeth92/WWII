@@ -1,4 +1,4 @@
-from WWII.app import db
+from wwii.app import db
 
 # db.drop_all()
 db.create_all()
