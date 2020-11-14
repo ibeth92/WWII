@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://lzxwacdzlrivz
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+WWII = SQLAlchemy(app)
 
 # Setup Database
 engine = create_engine('sqlite:///wwii.db')
