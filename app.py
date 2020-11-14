@@ -19,9 +19,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://lzxwacdzlrivz
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-WWII = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
-Pet = create_classes(WWII)
+WWII = create_classes(db)
 
 # Setup Flask
 # Create an app, pass to __name__
