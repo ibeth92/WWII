@@ -10,14 +10,18 @@ import flask
 from flask import Flask, jsonify, render_template
 from flask_cors import cross_origin 
 
-# from flask_sqlalchemy import SQLAlchemy
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://lzxwacdzlrivzn:3ac1a7944d2989535d6ed9f6f3f995ba4196f62c177d3980e068b5e35d51a60c@ec2-23-20-168-40.compute-1.amazonaws.com:5432/d1l75mfrn10irh
-# ', '')
+from models import create_classes
 
-# # Remove tracking modifications
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://lzxwacdzlrivzn:3ac1a7944d2989535d6ed9f6f3f995ba4196f62c177d3980e068b5e35d51a60c@ec2-23-20-168-40.compute-1.amazonaws.com:5432/d1l75mfrn10irh
+', '')
 
-# db = SQLAlchemy(app)
+# Remove tracking modifications
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+WWII = SQLAlchemy(app)
+
+Pet = create_classes(WWII)
 
 # Setup Flask
 # Create an app, pass to __name__
