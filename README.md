@@ -33,6 +33,5 @@ Our second visual is an interactive table chart that shows the detailed stats of
    https://www.kaggle.com/smid80/weatherww2%22%20%5Ct%20%22_blank
    https://data.world/datamil/world-war-ii-thor-data
     
-   Andrew Zamora, Vanessa Simpson, Ibet Hernandez
-   UTSA | Trilogy Data Analytics Bootcamp 2020
-
+   <i>Andrew Zamora, Vanessa Simpson, Ibet Hernandez</i>
+   <i>UTSA | Trilogy Data Analytics Bootcamp 2020</i>
