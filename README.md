@@ -1,4 +1,4 @@
-<h1><p align="center"><strong> Project 2: Visualizing Weapons, Weather, and Aircraft Data from World War II </strong></p>
+<h1><p align="center"><strong> Visualizing Weapons, Weather, and Aircraft Data from World War II </strong></p>
 <br>
 <p align="center">
 </h1>
