@@ -1,12 +1,10 @@
-# <center> Project 2: Visualizing Weapons, Weather, and Aircraft Data from World War II
+# Project 2: Visualizing Weapons, Weather, and Aircraft Data from World War II
 
 https://wwii.herokuapp.com/
 
 “EVERY DAY, MEMORIES OF WORLD WAR II—ITS SIGHTS AND SOUNDS, ITS TERRORS AND TRIUMPHS—DISAPPEAR.”
 
 - www.nationalww2museum.org    
- </center>
- 
 
 ## Background
 
