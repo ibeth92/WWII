@@ -34,4 +34,5 @@ Our second visual is an interactive table chart that shows the detailed stats of
    https://data.world/datamil/world-war-ii-thor-data
     
    <i>Andrew Zamora, Vanessa Simpson, Ibet Hernandez</i>
+   <br>
    <i>UTSA | Trilogy Data Analytics Bootcamp 2020</i>
