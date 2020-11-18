@@ -3,11 +3,12 @@
 <p align="center">
 </h1>
 
-<p align="center">https://wwii.herokuapp.com/</p>
+<p align="center">https://wwii.herokuapp.com/
 
 “EVERY DAY, MEMORIES OF WORLD WAR II—ITS SIGHTS AND SOUNDS, ITS TERRORS AND TRIUMPHS—DISAPPEAR.”
 
 - www.nationalww2museum.org    
+</p>
 </p>
 <br>
 
