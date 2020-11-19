@@ -15,12 +15,12 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 
 # from flask_sqlalchemy import SQLAlchemy
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('sqlite:///wwii.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 # # Remove tracking modifications
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# WWII = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 # Setup Database
 engine = create_engine('sqlite:///wwii.db')
