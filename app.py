@@ -15,6 +15,7 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 
 # from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 # # Remove tracking modifications
